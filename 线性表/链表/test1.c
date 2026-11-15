@@ -86,7 +86,7 @@ int deleteNode(Node* L, int pos)
     //遍历链表找到要删除节点的前驱
     for(int i = 0; i < pos - 1; i++)
     {
-        p = p->next;
+        p = p->next; 
         if(p == NULL)
         {
             return 0;
