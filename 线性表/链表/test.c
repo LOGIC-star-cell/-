@@ -83,6 +83,32 @@ void deleteNode(Node* L, int pos)
     free(q);
 }
 
+int getNodelenth(Node* L)
+{
+    Node *p = L->next;
+    int len = 0;
+    while(p != NULL)
+    {
+        len++;
+        p = p->next;
+    }
+    return len;
+}
+
+void freeList(Node* L)
+{
+    Node *p = L->next;
+    Node *q;
+
+    while(p != NULL)
+    {
+        q = p->next;
+        free(p);
+        p = q;
+    }
+    L->next = NULL;
+}
+
 void listNode(Node* L)
 {
     Node *p = L->next;
@@ -106,5 +132,8 @@ int main()
     listNode(list);
     deleteNode(list,2);
     listNode(list);
+    printf("%d\n",getNodelenth(list));
+    freeList(list);
+    printf("%d\n",getNodelenth(list));
     return 0;
 }

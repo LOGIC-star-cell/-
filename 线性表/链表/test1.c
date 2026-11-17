@@ -109,7 +109,7 @@ int deleteNode(Node* L, int pos)
 //获取链表长度
 int listLength(Node* L)
 {
-    Node* p = L;
+    Node* p = L->next;
     int len = 0;
     while(p != NULL)
     {
