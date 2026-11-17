@@ -135,6 +135,23 @@ void freeList(Node *L)
     L->next = NULL;
 }
 
+//使用双指针找到倒数第k个元素
+Node* findNodeFS(Node* L, int k)
+{
+    Node* fast = L->next;
+    Node* slow = L->next;
+    for(int i = 0; i < k; k++)
+    {
+        fast = fast->next;
+    }
+    while(fast != NULL)
+    {
+        fast = fast->next;
+        slow = slow->next;
+    }
+    printf("倒数第%d个节点值为：&d\n", k, slow->data);
+}
+
 //遍历
 void listNode(Node *L)
 {
