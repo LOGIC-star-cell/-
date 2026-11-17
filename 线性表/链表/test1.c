@@ -119,7 +119,7 @@ int listLength(Node* L)
     return len;
 }
 
-//释放链表（保留头节点）
+//释放链表（保留头节点） 
 void freeList(Node *L)
 {
     Node* p = L->next;
