@@ -54,6 +54,14 @@ Node* insertTail(Node* tail, ElemType e)
     return p;
 }
 
+//尾插法（节点）
+Node* insertTailWithNode(Node* tail, Node* node)
+{
+    tail->next = node;
+    node->next = NULL;
+    return node;
+}
+
 //在指定位置插入数据
 int insertNode(Node* L, int pos, ElemType e)
 {
