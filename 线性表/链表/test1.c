@@ -128,11 +128,11 @@ void freeList(Node *L)
 
     while(p != NULL)
     {
-        q = p->next;
-        free(p);
-        p = q;
+        q = p->next;//先保存下一节点的地址
+        free(p);//释放当前节点
+        p = q;//p跳到下一节点
     }
-    L->next = NULL;
+    L->next = NULL;//头节点置空，防止野指针
 }
 
 //使用双指针找到倒数第k个元素
