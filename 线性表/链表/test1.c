@@ -191,5 +191,7 @@ int main()
     freeList(list);
     printf("%d\n",listLength(list));
 
+    findNodeFS(list, 3);
+
     return 0;
 }
