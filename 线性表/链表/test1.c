@@ -160,6 +160,38 @@ Node* findNodeFS(Node* L, int k)
     printf("倒数第%d个节点值为：&d\n", k, slow->data);
 }
 
+//删除绝对值相同的节点
+void removeNode(Node* L, int n)
+{
+    Node *p = L;
+    int index;//作为数组下标使用
+    int *q = (int*)malloc(sizeof(int) * (n + 1));
+
+    //遍历数组，初始化为0
+    for(int i = 0; i < n + 1; i++)
+    {
+        *(q + i) = 0;
+    }
+
+    while ((p->next != NULL))
+    {
+        //abs取绝对值
+        index = abs(p->next->data);
+        if(*(q + index) == 0)
+        {
+            *(q + index) = 1;
+            p = p->next;
+        }
+        else
+        {
+            Node *temp = p->next;
+            p->next = temp->next;
+            free(temp);
+        }
+    }
+    free(q);
+}
+
 //遍历
 void listNode(Node *L)
 {
