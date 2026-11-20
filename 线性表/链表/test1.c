@@ -192,6 +192,45 @@ void removeNode(Node* L, int n)
     free(q);
 }
 
+//反转链表
+Node* reverseList(Node* head)
+{
+    Node* first = NULL;
+    Node* second = head->next;
+    Node* third;
+
+    while(second != NULL)
+    {
+        third = second->next;
+        second->next = first;
+        first = second;
+        second = third;
+    }
+
+    Node* hd = initList();//造一个新的头节点
+    hd->next = first;
+
+    return hd;
+}
+
+//删除链表中间节点（快慢指针）
+int delMiddleNode(Node* head)
+{
+    Node *fast = head->next;
+    Node *slow = head;
+
+    while(fast != NULL && fast->next != NULL)
+    {
+        fast = fast->next->next;
+        slow = slow->next;
+    }
+    Node *q = slow->next;
+    slow->next = q->next;
+    free(q);
+
+    return 1;
+}
+
 //遍历
 void listNode(Node *L)
 {
