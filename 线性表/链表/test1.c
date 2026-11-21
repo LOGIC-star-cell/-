@@ -3,14 +3,13 @@
 
 typedef int ElemType;
 
-//¶¨Òå½Úµã½á¹¹
 typedef struct node
 {
     ElemType data;
     struct node *next;
 }Node;
 
-//³õÊ¼»¯Á´±í(ÔìÍ·½Úµã)
+//åˆ›å»ºå¤´èŠ‚ç‚¹,åˆå§‹åŒ–é“¾è¡¨
 Node* initList()
 {
     Node *head = (Node*)malloc(sizeof(Node));
@@ -19,21 +18,17 @@ Node* initList()
     return head;
 }
 
-//Í·²å·¨
+//å¤´æ’æ³•
 int insertHead(Node* L, ElemType e)
 {
-    //1.ÔìĞÂ½Úµã
     Node *p = (Node*)malloc(sizeof(Node));
-    //2.ÌîÈëÊı¾İ
     p->data = e;
-    //3.ĞÂ½ÚµãÏÈÁ¬ºóÃæ
     p->next = L->next;
-    //4.Í·½ÚµãÔÙÁ¬ĞÂ½Úµã
     L->next = p;
     return 1;
 }
 
-//»ñÈ¡Î²½ÚµãµÄµØÖ·
+//è·å–å°¾èŠ‚ç‚¹çš„åœ°å€
 Node* get_tail(Node *L)
 {
     Node *p = L;
@@ -44,7 +39,7 @@ Node* get_tail(Node *L)
     return p;
 }
 
-//Î²²å·¨
+//å°¾æ’æ³•
 Node* insertTail(Node* tail, ElemType e)
 {
     Node *p = (Node*)malloc(sizeof(Node));
@@ -54,7 +49,7 @@ Node* insertTail(Node* tail, ElemType e)
     return p;
 }
 
-//Î²²å·¨£¨½Úµã£©
+
 Node* insertTailWithNode(Node* tail, Node* node)
 {
     tail->next = node;
@@ -62,23 +57,22 @@ Node* insertTailWithNode(Node* tail, Node* node)
     return node;
 }
 
-//ÔÚÖ¸¶¨Î»ÖÃ²åÈëÊı¾İ
+//åœ¨æŒ‡å®šä½ç½®æ’å…¥æ•°æ®
 int insertNode(Node* L, int pos, ElemType e)
 {
-    //ÓÃÀ´±£´æ²åÈëÎ»ÖÃµÄÇ°Çı½Úµã
+    //ç”¨æ¥ä¿å­˜æ’å…¥ä½ç½®çš„å‰é©±èŠ‚ç‚¹
     Node *p = L;
-    //±éÀúÁ´±íÕÒµ½²åÈëÎ»ÖÃµÄÇ°Çı½Úµã
+    //éå†é“¾è¡¨æ‰¾åˆ°æ’å…¥ä½ç½®çš„å‰é©±èŠ‚ç‚¹
     for(int i = 0; i < pos - 1; i++)
     {
         p = p->next;
-        //·ÀÔ½½çÅĞ¶Ï£ºÈç¹û»¹Ã»×ßµ½pos-1²½,p¾Í±ä³ÉÁËNULL
+        //é˜²è¶Šç•Œåˆ¤æ–­ï¼šå¦‚æœè¿˜æ²¡èµ°åˆ°pos-1æ­¥,på°±å˜æˆäº†NULL
         if(p == NULL)
         {
-            return 0;//²åÈëÎ»ÖÃ´íÎó
+            return 0;//æ’å…¥ä½ç½®é”™è¯¯
         }
     }
-
-    //Òª²åÈëµÄĞÂ½Úµã
+    //è¦æ’å…¥çš„æ–°èŠ‚ç‚¹
     Node *q = (Node*)malloc(sizeof(Node));
     q->data = e;
     q->next = p->next;
@@ -86,12 +80,12 @@ int insertNode(Node* L, int pos, ElemType e)
     return 1;
 }
 
-//É¾³ı½Úµã
+//åˆ é™¤æŒ‡å®šä½ç½®çš„èŠ‚ç‚¹
 int deleteNode(Node* L, int pos)
 {
-    //ÒªÉ¾³ı½ÚµãµÄÇ°Çı
+    //è¦åˆ é™¤èŠ‚ç‚¹çš„å‰é©±
     Node *p = L;
-    //±éÀúÁ´±íÕÒµ½ÒªÉ¾³ı½ÚµãµÄÇ°Çı
+    //éå†é“¾è¡¨æ‰¾åˆ°è¦åˆ é™¤èŠ‚ç‚¹çš„å‰é©±
     for(int i = 0; i < pos - 1; i++)
     {
         p = p->next; 
@@ -102,19 +96,19 @@ int deleteNode(Node* L, int pos)
     }
     if(p->next == NULL)
     {
-        printf("ÒªÉ¾³ıµÄÎ»ÖÃ´íÎó\n");
+        printf("è¦åˆ é™¤çš„ä½ç½®é”™è¯¯\n");
         return 0;
     }
-    //qÖ¸ÏòÒªÉ¾³ıµÄ½Úµã
+    //qæŒ‡å‘è¦åˆ é™¤çš„èŠ‚ç‚¹
     Node *q = p->next;
-    //ÈÃÒªÉ¾³ı½ÚµãµÄÇ°ÇıÖ¸ÏòÒªÉ¾³ı½ÚµãµÄºó¼Ì
+    //è®©è¦åˆ é™¤èŠ‚ç‚¹çš„å‰é©±æŒ‡å‘è¦åˆ é™¤èŠ‚ç‚¹çš„åç»§
     p->next = q->next;
-    //ÊÍ·ÅÒªÉ¾³ı½ÚµãµÄÄÚ´æ¿Õ¼ä
+    //é‡Šæ”¾è¦åˆ é™¤èŠ‚ç‚¹çš„å†…å­˜ç©ºé—´
     free(q);
     return 1;
 }
 
-//»ñÈ¡Á´±í³¤¶È
+//è·å–å•é“¾è¡¨çš„é•¿åº¦
 int listLength(Node* L)
 {
     Node* p = L->next;
@@ -127,23 +121,22 @@ int listLength(Node* L)
     return len;
 }
 
-//ÊÍ·ÅÁ´±í£¨±£ÁôÍ·½Úµã£© 
+//é‡Šæ”¾å•é“¾è¡¨ï¼ˆä¿ç•™å¤´èŠ‚ç‚¹ï¼‰ 
 void freeList(Node *L)
 {
     Node* p = L->next;
-    //¶¨ÒåÒ»¸öÁÙÊ±Ö¸Õëq£¬ÓÃÀ´Ôİ´æÏÂÒ»¸ö½ÚµãµÄµØÖ·
     Node* q;
 
     while(p != NULL)
     {
-        q = p->next;//ÏÈ±£´æÏÂÒ»½ÚµãµÄµØÖ·
-        free(p);//ÊÍ·Åµ±Ç°½Úµã
-        p = q;//pÌøµ½ÏÂÒ»½Úµã
+        q = p->next;//å…ˆä¿å­˜ä¸‹ä¸€èŠ‚ç‚¹çš„åœ°å€
+        free(p);//é‡Šæ”¾å½“å‰èŠ‚ç‚¹
+        p = q;//pè·³åˆ°ä¸‹ä¸€èŠ‚ç‚¹
     }
-    L->next = NULL;//Í·½ÚµãÖÃ¿Õ£¬·ÀÖ¹Ò°Ö¸Õë
+    L->next = NULL;//å¤´èŠ‚ç‚¹ç½®ç©ºï¼Œé˜²æ­¢é‡æŒ‡é’ˆ
 }
 
-//Ê¹ÓÃË«Ö¸ÕëÕÒµ½µ¹ÊıµÚk¸öÔªËØ
+//ä½¿ç”¨åŒæŒ‡é’ˆå¯»æ‰¾å€’æ•°ç¬¬kä¸ªèŠ‚ç‚¹
 Node* findNodeFS(Node* L, int k)
 {
     Node* fast = L->next;
@@ -157,17 +150,17 @@ Node* findNodeFS(Node* L, int k)
         fast = fast->next;
         slow = slow->next;
     }
-    printf("µ¹ÊıµÚ%d¸ö½ÚµãÖµÎª£º&d\n", k, slow->data);
+    printf("å€’æ•°ç¬¬%dä¸ªèŠ‚ç‚¹å€¼ä¸ºï¼š&d\n", k, slow->data);
 }
 
-//É¾³ı¾ø¶ÔÖµÏàÍ¬µÄ½Úµã
+//åˆ é™¤ç»å¯¹å€¼ç›¸åŒçš„èŠ‚ç‚¹
 void removeNode(Node* L, int n)
 {
     Node *p = L;
-    int index;//×÷ÎªÊı×éÏÂ±êÊ¹ÓÃ
+    int index;//ä½œä¸ºæ•°ç»„ä¸‹æ ‡ä½¿ç”¨
     int *q = (int*)malloc(sizeof(int) * (n + 1));
 
-    //±éÀúÊı×é£¬³õÊ¼»¯Îª0
+    //éå†æ•°ç»„ï¼Œåˆå§‹åŒ–ä¸º0
     for(int i = 0; i < n + 1; i++)
     {
         *(q + i) = 0;
@@ -175,7 +168,6 @@ void removeNode(Node* L, int n)
 
     while ((p->next != NULL))
     {
-        //absÈ¡¾ø¶ÔÖµ
         index = abs(p->next->data);
         if(*(q + index) == 0)
         {
@@ -192,7 +184,7 @@ void removeNode(Node* L, int n)
     free(q);
 }
 
-//·´×ªÁ´±í
+//åè½¬é“¾è¡¨
 Node* reverseList(Node* head)
 {
     Node* first = NULL;
@@ -207,13 +199,13 @@ Node* reverseList(Node* head)
         second = third;
     }
 
-    Node* hd = initList();//ÔìÒ»¸öĞÂµÄÍ·½Úµã
+    Node* hd = initList();//é€ ä¸€ä¸ªæ–°çš„å¤´èŠ‚ç‚¹
     hd->next = first;
 
     return hd;
 }
 
-//É¾³ıÁ´±íÖĞ¼ä½Úµã£¨¿ìÂıÖ¸Õë£©
+//åˆ é™¤é“¾è¡¨ä¸­é—´èŠ‚ç‚¹ï¼ˆå¿«æ…¢æŒ‡é’ˆï¼‰
 int delMiddleNode(Node* head)
 {
     Node *fast = head->next;
@@ -231,7 +223,7 @@ int delMiddleNode(Node* head)
     return 1;
 }
 
-//ÅĞ¶ÏÁ´±íÊÇ·ñÓĞ»·
+//åˆ¤æ–­é“¾è¡¨æ˜¯å¦æœ‰ç¯
 int isCycle(Node* head)
 {
     Node* fast = head;
@@ -249,16 +241,14 @@ int isCycle(Node* head)
     return 0;
 }
 
-//±éÀú
+//éå†
 void listNode(Node *L)
 {
-    //1.¶¨ÒåÒ»¸öÖ¸Õëp£¬´ÓÍ·½ÚµãµÄÏÂÒ»¸ö½Úµã(µÚÒ»¸öÕæÊµÊı¾İ)¿ªÊ¼
     Node *p = L->next;
-    //2.Ö»Òªp²»ÊÇ¿ÕÖ¸Õë£¬¾ÍÒ»Ö±ÍùºóÕÒ
     while(p != NULL)
     {
-        printf("%d\n",p->data);//·ÃÎÊµ±Ç°½ÚµãµÄÊı¾İ
-        p = p->next;//Ö¸ÕëÒÆµ½ÏÂÒ»¸ö½Úµã
+        printf("%d\n",p->data);//è®¿é—®å½“å‰èŠ‚ç‚¹çš„æ•°æ®
+        p = p->next;//æŒ‡é’ˆç§»åˆ°ä¸‹ä¸€ä¸ªèŠ‚ç‚¹
     }
     printf("\n");
 }
@@ -266,10 +256,7 @@ void listNode(Node *L)
 int main()
 {
     Node *list = initList();
-
-    //²åÈë10
     insertHead(list, 10);
-    //²åÈë20
     insertHead(list, 20);
 
     Node *tail = get_tail(list);
@@ -304,11 +291,11 @@ int main()
 
     if(isCycle(list))
     {
-        printf("ÓĞ»·\n");
+        printf("æœ‰ç¯\n");
     }
     else
     {
-        printf("ÎŞ»·\n");
+        printf("æ— ç¯\n");
     }
 
     return 0;
